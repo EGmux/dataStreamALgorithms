@@ -1,0 +1,19 @@
+\section{The Morris Counter}
+
+The Morris counter is an algorithm created to allow approximate calculations of values in devices that can't represent
+such numbers due to physical limitations, amount of bits available.
+
+\subsection{What is approximate counting?}
+
+The concept of approximate counting is deducing the total number of events that occurred but storing as minimal events as possible
+to allow such deduction.
+\\
+To compute the error parameters we mostly look at the standard deviation, that give us a measure of accuracy/trustworthiness.
+
+Effectively we can double, triple , n-increase the tracked value but storing a fraction of it size, indeed a very powerful technique.
+
+\subsection{So why the Morris counter?}
+
+Might not be obvious but a considerable difference in the error according to the sample size implies less guarantees, thus a method
+that guarantees for the average case a stable margin of error, that is won't oscillate is a good value proposition.
+
