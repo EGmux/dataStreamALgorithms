@@ -1,0 +1,78 @@
+\section{Notes related to probability concepts}
+
+\subsection{Sketch}
+
+The techinique is to apply a "linear projection on the fly" that converts high dimensional data into smaller dimensional data and then extract a quantity of interest
+\cite{10-jhu1} in the lower dimension.
+\\
+Can also call the smaller dimensional data as summary.
+
+\subsubsection{Formal definition}
+
+\begin{math}
+	V:=(x_0,x_1,...x_n)
+	\\
+	h:=\text{any hash function}
+	\\
+	x:=\text{any vector}
+	\\\\
+	V^n → V^m
+	\\
+	x →  h(x_i)
+	\\
+\end{math}
+
+\begin{lstlisting}[language=Haskell]
+  Sketch :: [a] -> (a -> a) -> [a]
+  Sketch x h = foldl h x
+  \end{lstlisting}
+\textit{obs: h deals per type of x not the whole vector}
+\\
+\textit{obs2: we use foldl and not map because a reduction in the size of the vector happens and map deal with same size vectors.}
+\cite{hemmanga}
+
+\subsection{Estimation}
+
+Before we can discuss estimation we must explain what is the process of statical inference. well inference is guessing something based on previous information
+\\
+note the word \textbf{guessing} there's no guarantee the right answer will be reached but an "accurate approximation" nonetheless.
+
+Thus estimation is a technique to achieve statical inference, the idea is that estimation allow us to guess the value of parameters that model some probability distribution
+
+What to know about the quality of estimations:
+
+\subsubsection{$\mu$ as symbol for confidence interval}
+
+the idea here is that the estimation can fall in a range, generally between 95\%-99\% that guarantees a confidence level
+
+\subsubsection{n as symbol for sample size}
+
+Well for each estimation we assume a minimum ammount of points in the data also called sampling that will allow the estimation process to happen and fall in the confidence interval
+
+\cite{notesEstimation}
+
+\subsection{Estimator}
+
+A fancy name for someting very simple an function that receives a set of samples and output a estimate that is a parameter to model the distribution
+here some fancy names for categorizing these functions
+
+\begin{itemize}
+	\item Biased: underestimation or overestimation
+	\item Efficient: small variance
+	\item Invariant: hard to change even after transformations, imagine apply a increase in each sampled datapoint the estimation would stay the same
+	\item Shrinkage: raw estimation
+	\item Sufficient: enough samples to extract a confidence level compliant estimation
+	\item  unbiased: not over/under estimation
+\end{itemize}
+\textit{OBS: statistic is not the same as estimation, estimation is a way to acquire an statistic, there are other ways as well}
+\cite{howto}
+
+\subsection{$(\epsilon, \delta)$-approximation}
+
+Another notational way to say that estimation error is related to ϵ and the confidence interval of that information is related to the δ parameter
+\\
+Thus one could say with ϵ < 0.2 we guarantee with δ > 0.9 that such estimate is accurate.
+\\\\
+\textbf{map absolute value of error to ϵ}
+\\
+\textbf{map confidence interval to δ}

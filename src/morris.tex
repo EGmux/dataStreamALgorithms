@@ -1,3 +1,7 @@
+Notes based on the following resources:
+\\
+\cite{blogMorris}
+
 \section{The Morris Counter}
 
 The Morris counter is an algorithm created to allow approximate calculations of values in devices that can't represent
@@ -17,3 +21,41 @@ Effectively we can double, triple , n-increase the tracked value but storing a f
 Might not be obvious but a considerable difference in the error according to the sample size implies less guarantees, thus a method
 that guarantees for the average case a stable margin of error, that is won't oscillate is a good value proposition.
 
+we use the following equation as an starting point to understand the algo
+
+\begin{equation}
+	v_n = ln(1+n)
+\end{equation}
+\\
+the choice for logarithm is due to the fact that v increases much faster than n, thus low amount of events  tracked guarantee better approximations
+and average case error is constant.
+
+However the value of the amount tracked,v, is not an integer and must be rounded up/down.
+
+\subsection{How to determine the rounding}
+
+\subsubsection{Cost innacuracy}
+
+Assume an increase in \textbf{r}, either the value of v will be undershoot or overshoot, we need an heuristic to deal with this, thus the concept of a marker, \textbf{d}
+to help with this we also use a rng approach to generate the parameter \textbf{r} and if r is larger or smaller than the mark d, then do the following:
+\begin{equation}
+	d = \frac{1}{n_{v+1} - n_v}
+	\label{eq:parameter d}
+\end{equation}
+\\\\
+if larger: increase the counter
+\\
+if smaller: keep current value
+\\\\
+proof of this is here: \cite{morris}
+\\\\
+then we get to this final equation
+\begin{equation}
+	v = \frac{log(n+1)}{log(2)}
+	\label{eq:final computation of tracked value}
+\end{equation}
+
+\subsection{The main advantage of this approach}
+
+Saving space, the amount of bits required to be tracked is $log(n)$ and bits implies binary counting that is with n bits we can track $2^n$ states that eventually map
+to numbers, thus a binary morris counter actually is $O(log(log(n)))$ in spatial complexity, because is not dealing with integers, but bits.
