@@ -53,8 +53,8 @@ Well for each estimation we assume a minimum ammount of points in the data also 
 
 \subsection{Estimator}
 
-A fancy name for someting very simple an function that receives a set of samples and output a estimate that is a parameter to model the distribution
-here some fancy names for categorizing these functions
+A fancy name for someting very simple an function that receives a set of samples parameters and output a estimate that is a parameter to model the distribution that originated the sample
+here some fancy names for categorizing these functions \cite{yt1}
 
 \begin{itemize}
 	\item Biased: underestimation or overestimation
@@ -80,6 +80,9 @@ Thus one could say with ϵ < 0.2 we guarantee with δ > 0.9 that such estimate i
 \subsubsection{Formal definition}
 
 \begin{equation}
-	\mathds{P}[|\phi - t| > ϵt] \le \delta
+	\mathds{P}[|\phi - t| > \epsilon t] \le \delta
 	\label{eq:eps-delta approximtion}
 \end{equation}
+\textbf{Read this as:}
+\\
+The probability of ϕ being a wrong estimation for a percentage of t is at most δ

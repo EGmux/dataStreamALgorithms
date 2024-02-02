@@ -4,6 +4,11 @@
 \usepackage{listings}
 \usepackage{amsmath}
 \usepackage{dsfont}
+\NewDocumentCommand{ \ytref }{ m m O{00} O{00} O{00} }{%
+  \href{#2=#3h#4m#5s}{%
+    #1%
+  }%
+}
 \newfontfamily{\emoji}{Noto Emoji}[Renderer=Harfbuzz]
 % The Noto Emoji font can be downloaded here: https://www.google.com/get/noto/#emoji-zsye
 \setmainfont{texgyrepagella}[
